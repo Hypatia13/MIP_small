@@ -45,14 +45,21 @@ var app = {
     }
 };
 
-app.initialize();
+
 
 function takePhoto() {
-   navigator.camera.getPicture(onSuccess, onFail, {quality:80, destinationType: Camera.DestinationType.FILE_URI, encodingType: Camera.EncodingType.JPEG, saveToPhotoAlbum: true});
+   navigator.camera.getPicture(onSuccess, onFail, {
+    quality:80, 
+    destinationType: Camera.DestinationType.FILE_URI, 
+    encodingType: Camera.EncodingType.JPEG, 
+    saveToPhotoAlbum: true,
+    targetHeight: 150,
+    targetWidth: 150,
+  });
 
-   function onSuccess(imageURI) {
-      var image = document.getElementById('newPhoto');
-      image.src = imageURI;
+   function onSuccess(photoURI) {
+      var photo = document.getElementById('newPhoto');
+      photo.src = photoURI;
    }
 
    function onFail(errorMsg) {
@@ -60,3 +67,4 @@ function takePhoto() {
    }
 }
 
+app.initialize();
